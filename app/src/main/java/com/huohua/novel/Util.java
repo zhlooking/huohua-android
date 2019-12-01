@@ -40,6 +40,14 @@ public class Util {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url){
                 Uri uri = Uri.parse(url);
+
+                if (url.startsWith("mailto:") || url.startsWith("tel:")) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW,
+                            Uri.parse(url));
+                    activity.startActivity(intent);
+                    return true;
+                }
+
                 String path = uri.getEncodedPath();
                 if ((path.contains("_")
                         ||  path.contains("paihangbang")
