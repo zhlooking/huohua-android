@@ -59,16 +59,25 @@ public class Util {
 
                     return true;
                 } else if (TextUtils.equals("/home/index/bookcase", path) && !TextUtils.equals("history", type)) {    // 书架
-                    NavController navController = Navigation.findNavController(activity, R.id.nav_host_fragment);
-                    navController.navigate(R.id.navigation_history);
+                    Intent intent = new Intent(activity, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.putExtra("selectedTab", R.id.navigation_history);
+                    activity.startActivity(intent);
+
                     return true;
                 } else if (TextUtils.equals("/xiaoshuodaquan", path) && !TextUtils.equals("category", type)) {         // 书库
-                    NavController navController = Navigation.findNavController(activity, R.id.nav_host_fragment);
-                    navController.navigate(R.id.navigation_category);
+                    Intent intent = new Intent(activity, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.putExtra("selectedTab", R.id.navigation_category);
+                    activity.startActivity(intent);
+
                     return true;
                 } else if ((TextUtils.equals("/", path) || TextUtils.equals("", path)) && !TextUtils.equals("home", type)) {     // 书城
-                    NavController navController = Navigation.findNavController(activity, R.id.nav_host_fragment);
-                    navController.navigate(R.id.navigation_home);
+                    Intent intent = new Intent(activity, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.putExtra("selectedTab", R.id.navigation_home);
+                    activity.startActivity(intent);
+
                     return true;
                 }
 
