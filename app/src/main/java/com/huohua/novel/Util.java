@@ -12,17 +12,21 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
+import java.util.Arrays;
+import java.util.List;
 
 public class Util {
-    @SuppressLint("SetJavaScriptEnabled")
+    @SuppressLint({"SetJavaScriptEnabled", "AddJavascriptInterface"})
     public static void configWebView(final WebView webView, final Activity activity, CharSequence type) {
         //启用javaScript
         webView.getSettings().setJavaScriptEnabled(true);
 
-        if (Build.VERSION.SDK_INT >= 19) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            webView.getSettings().setAppCacheEnabled(true);
             webView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+
+//            webView.getSettings().setAppCacheEnabled(false);
+//            webView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
         }
 
         //全屏显示
@@ -33,6 +37,7 @@ public class Util {
             webView.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
         }
         webView.setWebViewClient(getWebViewClient(activity, type));
+        webView.addJavascriptInterface(new WebAppGoBackInterface(activity, webView), "Android");
     }
 
     private static WebViewClient getWebViewClient(final Activity activity, final CharSequence type) {
@@ -49,6 +54,17 @@ public class Util {
                 }
 
                 String path = uri.getEncodedPath();
+
+                List<String> list = Arrays.asList(Config.kCategoryNames);
+
+                if (list.contains(path.substring(1))) {
+                    Intent intent = new Intent(activity, DetailActivity.class);
+                    intent.putExtra("pathName", path);
+                    activity.startActivity(intent);
+
+                    return true;
+                }
+
                 if ((path.contains("_")
                         ||  path.contains("paihangbang")
                         ||  path.contains("quanben")
