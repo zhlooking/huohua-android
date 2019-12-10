@@ -2,7 +2,7 @@ package com.huohua.novel;
 
 public class Config {
 //    public static String kDomain = "http://m.xgbxg.com";
-    public static String kDomain = "http://local.m.huohua.com";
+    public static String kDomain = "https://m.tiantianyuedu.cn";
 
     public static String[] kCategoryNames = new String[] {
             "quanben",
