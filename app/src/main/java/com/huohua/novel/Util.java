@@ -2,15 +2,20 @@ package com.huohua.novel;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
+import android.webkit.JsResult;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import androidx.appcompat.app.AlertDialog;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,6 +38,23 @@ public class Util {
         webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         webView.getSettings().setUseWideViewPort(true);
         webView.getSettings().setLoadWithOverviewMode(true);
+        webView.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
+                AlertDialog dialog = new AlertDialog.Builder(view.getContext())
+                        .setTitle(message)
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //do nothing
+                            }
+                        })
+                        .create();
+                dialog.show();
+                result.confirm();
+                return true;
+            }
+        });
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             webView.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
         }
@@ -81,7 +103,7 @@ public class Util {
                     activity.startActivity(intent);
 
                     return true;
-                } else if (TextUtils.equals("/xiaoshuodaquan", path) && !TextUtils.equals("category", type)) {         // 书库
+                } else if (TextUtils.equals("/xiaoshuodaquan", path) && !TextUtils.equals("category", type)) {         // 分类
                     Intent intent = new Intent(activity, MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     intent.putExtra("selectedTab", R.id.navigation_category);
