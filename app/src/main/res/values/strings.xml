@@ -1,11 +1,10 @@
 <resources>
-    <string name="app_name">火花小说</string>
+    <string name="app_name">天天阅读</string>
     <string name="title_home">书城</string>   <!-- 首页 -->
     <string name="title_history">书架</string>    <!-- 我的阅读记录 -->
     <string name="title_category">分类</string>   <!-- 分类 -->
     <string name="title_mine">我的</string>
 
     <string name="title_activity_detail">DetailActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>   <!-- 我的阅读记录 -->
+    <string name="title_activity_splash">SplashActivity</string>   <!-- 我的阅读记录 -->
 </resources>
