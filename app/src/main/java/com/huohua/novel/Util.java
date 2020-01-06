@@ -54,6 +54,27 @@ public class Util {
                 result.confirm();
                 return true;
             }
+
+            @Override
+            public boolean onJsConfirm(WebView view, String url, String message, final JsResult result) {
+                AlertDialog dialog = new AlertDialog.Builder(view.getContext())
+                        .setTitle(message)
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                result.confirm();
+                            }
+                        })
+                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                result.cancel();
+                            }
+                        })
+                        .create();
+                dialog.show();
+                return true;
+            }
         });
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             webView.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
@@ -127,14 +148,14 @@ public class Util {
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
 
-                Log.v("---> onPageStarted", type + "");
+//                Log.v("---> onPageStarted", type + "");
             }
 
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
 
-                Log.v("---> onPageFinished", type + "");
+//                Log.v("---> onPageFinished", type + "");
             }
         };
     }

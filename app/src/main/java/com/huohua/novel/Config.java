@@ -8,6 +8,7 @@ public class Config {
             "quanben",
             "xuanhuanqihuan",
             "dushizhichang",
+            "doushizhichang",
             "lishijunshi",
             "youxijingji",
             "kehuanlingyi",

@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name='天天阅读'
+rootProject.name='huohua-novel'

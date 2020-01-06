@@ -19,3 +19,39 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+-keep class com.umeng.** {*;}
+-keepclassmembers class * {
+   public <init> (org.json.JSONObject);
+}
+-keepclassmembers enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}
+
+-keep public class com.huohua.novel.R$*{
+    public static final int *;
+}
+
+# 小米通道
+-keep class com.xiaomi.** {*;}
+-dontwarn com.xiaomi.**
+
+# 华为通道
+-keep class com.huawei.** {*;}
+-dontwarn com.huawei.**
+
+# GCM/FCM通道
+-keep class com.google.firebase.**{*;}
+-dontwarn com.google.firebase.**
+
+# OPPO通道
+-keep public class * extends android.app.Service
+
+# VIVO通道
+-keep class com.vivo.** {*;}
+-dontwarn com.vivo.**
+
+# 魅族通道
+-keep class com.meizu.cloud.** {*;}
+-dontwarn com.meizu.cloud.**
