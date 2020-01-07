@@ -35,7 +35,6 @@ public class MyApplication extends Application {
         mContext = this;
 
 //        UMConfigure.init(this, UMConfigure.DEVICE_TYPE_PHONE, "174a887e9dfff90b37e6890a749546bf");
-//        UMConfigure.init(this, "Umeng", "5e0f0c670cafb2aafd000352", UMConfigure.DEVICE_TYPE_PHONE, "174a887e9dfff90b37e6890a749546bf");
         UMConfigure.init(this, "5e0f0c670cafb2aafd000352", "Umeng", UMConfigure.DEVICE_TYPE_PHONE, "174a887e9dfff90b37e6890a749546bf");
         UMConfigure.setLogEnabled(BuildConfig.DEBUG);
 
@@ -44,12 +43,12 @@ public class MyApplication extends Application {
             @Override
             public void onSuccess(String deviceToken) {
                 //注册成功会返回deviceToken deviceToken是推送消息的唯一标志
-                Log.e("Application","注册成功: deviceToken_success -------->  " + deviceToken);
+//                Log.e("Application","注册成功: deviceToken_success -------->  " + deviceToken);
             }
 
             @Override
             public void onFailure(String s, String s1) {
-                Log.e("Application","注册失败: deviceToken_failed -------->  " + "s:" + s + ",s1:" + s1);
+//                Log.e("Application","注册失败: deviceToken_failed -------->  " + "s:" + s + ",s1:" + s1);
             }
         });
 
