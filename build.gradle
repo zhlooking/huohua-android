@@ -5,6 +5,11 @@ buildscript {
         google()
         jcenter()
         maven { url 'https://dl.bintray.com/umsdk/release' }
+
+//        google()
+//        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+//        maven { url 'https://maven.aliyun.com/repository/google' }
+//        jcenter()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.3'
@@ -19,6 +24,10 @@ allprojects {
         google()
         jcenter()
         maven { url 'https://dl.bintray.com/umsdk/release' }
+//        google()
+//        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+//        maven { url 'https://maven.aliyun.com/repository/google' }
+//        jcenter()
     }
 }
 

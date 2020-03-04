@@ -2,9 +2,18 @@
     <string name="app_name">天天阅读</string>
     <string name="title_home">书城</string>   <!-- 首页 -->
     <string name="title_history">书架</string>    <!-- 我的阅读记录 -->
+    <string name="title_sort">排行</string>    <!-- 我的阅读记录 -->
     <string name="title_category">分类</string>   <!-- 分类 -->
     <string name="title_mine">我的</string>
 
     <string name="title_activity_detail">DetailActivity</string>
     <string name="title_activity_splash">SplashActivity</string>   <!-- 我的阅读记录 -->
+
+
+    <string name="dialogContent">
+        感谢您使用天天阅读！我们非常重视您的个人隐私和个人信息保护。\n
+        请仔细阅读我们的
+        <a href="https://m.tiantianyuedu.cn/agreement">《用户协议》</a>以及
+        <a href="https://m.tiantianyuedu.cn/privacy">《隐私政策》</a>，点击同意即表示您已阅读并同意全部条款。
+    </string>
 </resources>

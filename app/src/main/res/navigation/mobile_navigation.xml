@@ -14,7 +14,7 @@
     <fragment
         android:id="@+id/navigation_history"
         android:name="com.huohua.novel.ui.history.HistoryFragment"
-        android:label="@string/title_history"
+        android:label="@string/title_sort"
         tools:layout="@layout/fragment_history" />
 
     <fragment

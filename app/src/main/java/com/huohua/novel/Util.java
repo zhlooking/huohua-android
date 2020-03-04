@@ -8,7 +8,6 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.text.TextUtils;
-import android.util.Log;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -109,7 +108,6 @@ public class Util {
                 }
 
                 if ((path.contains("_")
-                        ||  path.contains("paihangbang")
                         ||  path.contains("quanben")
                 ) && !TextUtils.equals("detail", type)) {
                     Intent intent = new Intent(activity, DetailActivity.class);
@@ -120,7 +118,7 @@ public class Util {
                 } else if (TextUtils.equals("/home/index/bookcase", path) && !TextUtils.equals("history", type)) {    // 书架
                     Intent intent = new Intent(activity, MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    intent.putExtra("selectedTab", R.id.navigation_history);
+                    intent.putExtra("selectedTab", R.id.navigation_mine);
                     activity.startActivity(intent);
 
                     return true;
@@ -128,6 +126,13 @@ public class Util {
                     Intent intent = new Intent(activity, MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     intent.putExtra("selectedTab", R.id.navigation_category);
+                    activity.startActivity(intent);
+
+                    return true;
+                } else if (TextUtils.equals("/paihangbang.html", path) && !TextUtils.equals("sort", type)) {         // 分类
+                    Intent intent = new Intent(activity, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.putExtra("selectedTab", R.id.navigation_history);
                     activity.startActivity(intent);
 
                     return true;

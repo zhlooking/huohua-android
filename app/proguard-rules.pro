@@ -48,10 +48,12 @@
 # OPPO通道
 -keep public class * extends android.app.Service
 
-# VIVO通道
--keep class com.vivo.** {*;}
--dontwarn com.vivo.**
-
 # 魅族通道
 -keep class com.meizu.cloud.** {*;}
 -dontwarn com.meizu.cloud.**
+
+# VIVO通道
+-dontwarn com.vivo.push.**
+-keep class com.vivo.push.**{*; }
+-keep class com.vivo.vms.**{*; }
+-keep class xxx.xxx.xxx.PushMessageReceiverImpl{*;}

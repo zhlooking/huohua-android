@@ -10,8 +10,22 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-    buildTypes {
+
+    signingConfigs {
         release {
+            storeFile file("../new_key.keystore")
+            storePassword "tiantian028"
+            keyAlias "key0"
+            keyPassword "tiantian028"
+        }
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.release
+        }
+        release {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -85,26 +99,26 @@ dependencies {
     // 通用推送
     implementation 'com.umeng.umsdk:push:6.0.1'
 
-//    // 小米推送
-//    implementation 'com.umeng.umsdk:xiaomi-push:3.6.17'
-//    implementation 'com.umeng.umsdk:xiaomi-umengaccs:1.1.0'
-//
-//    // 华为推送
-//    implementation 'com.umeng.umsdk:huawei-basetb:2.6.3.305'
-//    implementation 'com.umeng.umsdk:huawei-pushtb:2.6.3.305'
-//    implementation 'com.umeng.umsdk:huawei-umengaccs:1.2.1'
-//
-//    // 魅族推送
-//    implementation 'com.umeng.umsdk:meizu-push:3.8.1'
-//    implementation 'com.umeng.umsdk:meizu-umengaccs:1.0.6'
-//
-//    // OPPO推送
-//    implementation 'com.umeng.umsdk:oppo-push:1.0.1'
-//    implementation 'com.umeng.umsdk:oppo-umengaccs:1.0.3'
-//
-//    // VIVO推送
-//    implementation 'com.umeng.umsdk:vivo-push:2.3.1'
-//    implementation 'com.umeng.umsdk:vivo-umengaccs:1.0.4'
+    // 小米推送
+    implementation 'com.umeng.umsdk:xiaomi-push:3.6.17'
+    implementation 'com.umeng.umsdk:xiaomi-umengaccs:1.1.0'
+
+    // 华为推送
+    implementation 'com.umeng.umsdk:huawei-basetb:2.6.3.305'
+    implementation 'com.umeng.umsdk:huawei-pushtb:2.6.3.305'
+    implementation 'com.umeng.umsdk:huawei-umengaccs:1.2.1'
+
+    // 魅族推送
+    implementation 'com.umeng.umsdk:meizu-push:3.8.1'
+    implementation 'com.umeng.umsdk:meizu-umengaccs:1.0.6'
+
+    // OPPO推送
+    implementation 'com.umeng.umsdk:oppo-push:1.0.1'
+    implementation 'com.umeng.umsdk:oppo-umengaccs:1.0.3'
+
+    // VIVO推送
+    implementation 'com.umeng.umsdk:vivo-push:2.3.1'
+    implementation 'com.umeng.umsdk:vivo-umengaccs:1.0.4'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

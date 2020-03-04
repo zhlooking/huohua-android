@@ -1,18 +1,32 @@
 package com.huohua.novel;
 
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
+import android.util.Log;
+import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+
 public class MainActivity extends BaseActivity {
+    private final int MAIN_DISPLAY_LENGTH = 2 * 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +38,12 @@ public class MainActivity extends BaseActivity {
 
         Bundle extras = getIntent().getExtras();
         int selectedTab = 0;
+        String from = "normal";
+        String pathName = "";
         if (extras != null) {
             selectedTab = extras.getInt("selectedTab");
+            from = extras.getString("from", "normal");
+            pathName = extras.getString("pathName", "normal");
         }
 
         ActionBar actionBar = getSupportActionBar();
@@ -46,5 +64,69 @@ public class MainActivity extends BaseActivity {
         if (selectedTab != 0) {
             navController.navigate(selectedTab);
         }
+
+        if (TextUtils.equals(from, "third")) {
+            final String finalPathName = pathName;
+            new Handler().postDelayed(new Runnable(){
+                @Override
+                public void run() {
+                    Log.e("Main - Detail", finalPathName);
+                    Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("pathName", finalPathName);
+                    intent.putExtra("from", "notification");
+
+                    startActivity(intent);
+                }
+            }, MAIN_DISPLAY_LENGTH);
+        }
+
+        checkPrivacyAgreement();
+    }
+
+    private SharedPreferences getSharedPrefs() {
+        return this.getSharedPreferences("com.huohua.novel", Context.MODE_PRIVATE);
+    }
+
+    private void checkPrivacyAgreement() {
+        long hasAgreementChecked = this.getSharedPrefs().getInt("has_agreement_checked_1.0", 0);
+
+        if (hasAgreementChecked == 0) {
+            this.showAgreementDialog();
+        }
+    }
+
+    private void setPrivacyAgreementChecked() {
+        this.getSharedPrefs().edit().putInt("has_agreement_checked_1.0", 1).apply();
+    }
+
+    private void showAgreementDialog() {
+        TextView textView = new TextView(this);
+        textView.setText(R.string.dialogContent);
+        textView.setMovementMethod(LinkMovementMethod.getInstance()); // this is important to make the links clickable
+
+        FrameLayout container = new FrameLayout(this);
+        FrameLayout.LayoutParams params = new  FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        int margin = getResources().getDimensionPixelSize(R.dimen.dialog_margin_middle);
+        params.leftMargin = margin;
+        params.topMargin = margin;
+        params.rightMargin = margin;
+        params.bottomMargin = margin;
+        textView.setLayoutParams(params);
+        container.addView(textView);
+
+        AlertDialog alertDialog = new AlertDialog.Builder(this)
+                .setTitle("欢迎使用")
+                .setPositiveButton("同意", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        setPrivacyAgreementChecked();
+                        dialog.dismiss();
+                    }
+                })
+                .setView(container)
+                .create();
+        alertDialog.setCancelable(false);
+        alertDialog.show();
     }
 }

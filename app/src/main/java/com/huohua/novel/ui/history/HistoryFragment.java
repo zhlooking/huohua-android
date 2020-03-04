@@ -26,8 +26,8 @@ public class HistoryFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_history, container, false);
 
         WebView webView = root.findViewById(R.id.history_webview);
-        Util.configWebView(webView, getActivity(), "history");
-        webView.loadUrl(Config.kDomain + "/home/index/bookcase");
+        Util.configWebView(webView, getActivity(), "sort");
+        webView.loadUrl(Config.kDomain + "/paihangbang");
 
         return root;
     }

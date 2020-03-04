@@ -4,4 +4,6 @@
 
 Android key store passwords:
 bw424N%S9J
+bw424N%S9J
+s3=8K*vA8Y
 s3=8K*vA8Y
