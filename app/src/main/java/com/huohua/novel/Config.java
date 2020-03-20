@@ -6,6 +6,7 @@ public class Config {
 
     public static String[] kCategoryNames = new String[] {
             "quanben",
+            "wenxue",
             "xuanhuanqihuan",
             "dushizhichang",
             "doushizhichang",

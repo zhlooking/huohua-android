@@ -10,10 +10,12 @@ import android.os.Handler;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -128,5 +130,20 @@ public class MainActivity extends BaseActivity {
                 .create();
         alertDialog.setCancelable(false);
         alertDialog.show();
+    }
+
+    private long mExitTime;
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if ((System.currentTimeMillis() - mExitTime) > 2000) {
+                Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                mExitTime = System.currentTimeMillis();
+            } else {
+                System.exit(0);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

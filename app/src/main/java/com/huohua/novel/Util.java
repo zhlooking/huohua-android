@@ -95,6 +95,11 @@ public class Util {
                     return true;
                 }
 
+                if (url.endsWith("?intercept")) {
+                    view.loadUrl(url);
+                    return true;
+                }
+
                 String path = uri.getEncodedPath();
 
                 List<String> list = Arrays.asList(Config.kCategoryNames);

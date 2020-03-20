@@ -28,7 +28,7 @@ public class DetailActivity extends BaseActivity {
 
         webView = findViewById(R.id.detail_webview);
         Util.configWebView(webView, this, "detail");
-        webView.loadUrl(Config.kDomain + pathName);
+        webView.loadUrl(Config.kDomain + pathName + "?intercept");
     }
 
     @Override
