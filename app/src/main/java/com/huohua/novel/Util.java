@@ -82,6 +82,7 @@ public class Util {
         }
         webView.setWebViewClient(getWebViewClient(activity, type));
         webView.addJavascriptInterface(new WebAppGoBackInterface(activity, webView), "Android");
+        webView.addJavascriptInterface(new WebAppShowAdInterface(activity, webView), "TT");
     }
 
     private static WebViewClient getWebViewClient(final Activity activity, final CharSequence type) {
